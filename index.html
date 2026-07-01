@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERDANT AROMATICS — 깊은 향을 키운 바질 생잎</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/hero_morph.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#main" class="nav__logo">
+  <img
+    src="images/logo.png" alt="로고"
+    class="nav__logo-icon"
+  />
+</a>
+      <nav class="nav__menu" role="navigation" aria-label="주 메뉴">
+        <a href="index.html"    class="nav__link nav__link--active">Main</a>
+        <a href="brand.html"   class="nav__link" >Brand</a>
+        <a href="product.html" class="nav__link" >Product</a>
+        <a href="#contact"     class="nav__link">Contact</a>
+      </nav>
+      <button class="nav__cart" aria-label="장바구니">
+        
+      </button>
+      <button class="nav__hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__drawer" id="drawer">
+      <a href="index.html"        class="nav__drawer-link">Main</a>
+      <a href="brand.html"   class="nav__drawer-link">Brand</a>
+      <a href="product.html" class="nav__drawer-link">Product</a>
+      <a href="#contact"     class="nav__drawer-link">Contact</a>
+    </div>
+  </header>
+
+
+  <!-- =============================================
+       SECTION 1 — HERO  (파티클 구 → 바질 잎 모핑)
+
+       레이어 순서 (아래→위):
+         ① .hero__bg-img    배경 이미지     z:0  pointer-events:none
+         ② .hero__bg-dim    다크 오버레이   z:1  pointer-events:none
+         ③ #heroMorphCanvas 파티클 캔버스   z:2  ← 드래그 여기서만
+         ④ .hero__overlay   하단 페이드     z:3  pointer-events:none
+         ⑤ .hero__content   텍스트         z:4  pointer-events:none
+         ⑥ .morph-hint      드래그 힌트    z:5  pointer-events:none
+         ⑦ .morph-progress  진행 바        z:5  pointer-events:none
+
+       📁 배경 이미지 교체 방법:
+         #heroBgImg 의 src 값을 원하는 경로로 바꾸세요
+         예) images/hero-bg.jpg  /  images/basil-field.jpeg
+         이미지 없으면 다크 그린 그라디언트 자동 표시
+  ============================================= -->
+  <section class="hero-outer" id="main" aria-label="히어로">
+    <div class="hero-wrap" id="heroWrap">
+
+      <!-- ① 배경 이미지 (z:0)
+           pointer-events:none 으로 드래그 완전 통과
+           ─────────────────────────────────────── -->
+      <div class="hero__bg-img">
+        <img
+          id="heroBgImg"
+          src="images/basil.png"
+          alt=""
+          aria-hidden="true"
+          onerror="this.parentElement.style.display='none'"
+        />
+      </div>
+
+      <!-- ② 다크 오버레이 (z:1)
+           이미지를 눌러서 파티클이 잘 보이게 함
+           강도: hero-morph.css .hero__bg-dim rgba 값 조정
+           ─────────────────────────────────────── -->
+      <div class="hero__bg-dim"></div>
+
+      <!-- ③ Three.js 파티클 캔버스 (z:2)
+           드래그 이벤트가 오직 이 캔버스에서만 처리됨
+           mix-blend-mode:screen → 배경 이미지와 자연 합성
+           ─────────────────────────────────────── -->
+      <canvas id="heroMorphCanvas" aria-hidden="true"></canvas>
+
+      <!-- ④ 하단 페이드 오버레이 (z:3)
+           텍스트 가독성용 그라디언트
+           ─────────────────────────────────────── -->
+      <div class="hero__overlay"></div>
+
+      <!-- ⑤ 텍스트 블록 (z:4)
+           JS가 모핑 단계에 따라 내용 교체
+           ─────────────────────────────────────── -->
+      <div class="hero__content">
+        <p class="hero__label">FRESHGRAM&amp;BASIL</p>
+        <h1 class="hero__headline">
+          풍부한 칼슘, 깊은 향을 담은<br />프리미엄 바질
+        </h1>
+      </div>
+
+      <!-- ⑥ 드래그 유도 힌트 (z:5)
+           드래그 시작 시 JS가 opacity 서서히 감소
+           ─────────────────────────────────────── -->
+      <div class="morph-hint" id="morphHint">
+        <div class="morph-hint__icon">
+          <svg width="48" height="32" viewBox="0 0 48 32" fill="none">
+            <polyline points="8,16 2,16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <polyline points="5,12 1,16 5,20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="40,16 46,16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <polyline points="43,12 47,16 43,20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="24" cy="16" r="5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <line x1="24" y1="11" x2="24" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="morph-hint__text">드래그해서 탐색하세요</p>
+      </div>
+
+      <!-- ⑦ 모핑 진행 바 (z:5)
+           Sphere → Morphing → Basil Leaf 단계 표시
+           ─────────────────────────────────────── -->
+      <div class="morph-progress">
+        <div class="morph-progress__bar" id="morphProgressBar"></div>
+        <span class="morph-progress__label" id="morphProgressLabel">Sphere</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 2: BRAND -->
+  <section class="section section--cream" id="brand" aria-label="브랜드 철학">
+    <div class="container split">
+      <div class="split__text reveal">
+        <span class="eyebrow">Our Method</span>
+        <h2 class="headline-md">
+          재배 방식이<br />향과 품질을 만듭니다
+        </h2>
+        <p class="body-lg">
+          실내 스마트팜에서 황토볼 기반 수경 재배 방식으로<br />
+          생육 환경을 세심하게 설계합니다.
+        </p>
+        <div class="stat-row">
+          <div class="stat-item">
+            <span class="stat-num">24/7</span>
+            <span class="stat-desc">환경 모니터링</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">황토볼</span>
+            <span class="stat-desc">수경 배지 사용</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">Indoor</span>
+            <span class="stat-desc">스마트팜 재배</span>
+          </div>
+        </div>
+      </div>
+      <div class="split__image reveal reveal--right">
+        <img src="images/브랜드사진/farm.jpeg" alt="스마트팜 재배 환경" class="split__img" loading="lazy"
+             onerror="this.parentElement.classList.add('img-fallback')" />
+        <div class="split__image-accent"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 3: 품질 특징 -->
+  <section class="section section--dark" id="quality" aria-label="품질 특징">
+    <div class="container">
+      <div class="quality__header reveal">
+        <span class="eyebrow eyebrow--light">What Makes Us Different</span>
+        <h2 class="headline-md headline-md--light">
+          향은 더 깊게,<br />잎은 더 두껍게
+        </h2>
+        <p class="body-lg body-lg--muted">
+          우리가 키운 바질은 깊은 향과 풍부한 칼슘,<br />탄탄한 잎의 밀도를 특징으로 합니다.
+        </p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card reveal" style="--delay:0ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+              <path d="M16 32Q20 24 24 28Q28 32 32 24" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M16 26Q20 18 24 22Q28 26 32 18" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">깊은 향</h3>
+          <p class="feature-card__desc">가까이 갈수록 더 분명해지는 바질의 아로마</p>
+        </article>
+        <article class="feature-card reveal" style="--delay:120ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+              <polygon points="24,12 32,28 16,28" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <polygon points="24,20 30,32 18,32" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">풍부한 칼슘</h3>
+          <p class="feature-card__desc">균형 있는 생육 관리로 채워낸 건강한 품질</p>
+        </article>
+        <article class="feature-card reveal" style="--delay:240ms">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+              <path d="M24 34C24 34 14 24 14 18C14 13 18.5 11 24 11C29.5 11 34 13 34 18C34 24 24 34 24 34Z"
+                    stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M24 34L24 11" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">두꺼운 잎</h3>
+          <p class="feature-card__desc">눈으로도, 손끝으로도 느껴지는 밀도 있는 차이</p>
+        </article>
+      </div>
+      <p class="quality__quote reveal">
+        한 번 보면 보이고, 한 번 맡으면 기억됩니다.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- SECTION 4: PRODUCT -->
+  <section class="section section--cream" id="product" aria-label="제품 소개">
+    <div class="container split split--reverse">
+      <div class="split__image reveal">
+        <img src="images/브랜드사진/incense.png" alt="바질 인센스 제품" class="split__img" loading="lazy"
+             onerror="this.parentElement.classList.add('img-fallback')" />
+        <div class="split__image-accent split__image-accent--left"></div>
+      </div>
+      <div class="split__text reveal reveal--right">
+        <span class="eyebrow">From Leaf to Incense</span>
+        <h2 class="headline-md">
+          생잎의 가치를,<br />향의 경험으로 확장합니다
+        </h2>
+        <p class="body-lg">
+          직접 키운 바질 생잎을 직접 말리고<br />
+          직접 재조해 인센스 제품으로 완성합니다.
+        </p>
+        <ol class="process-list">
+          <li class="process-item">
+            <span class="process-item__step">재배</span>
+            <span class="process-item__desc">스마트팜에서 정밀 재배</span>
+          </li>
+          <li class="process-item">
+            <span class="process-item__step">건조</span>
+            <span class="process-item__desc">자연 건조로 향 농축</span>
+          </li>
+          <li class="process-item">
+            <span class="process-item__step">제조</span>
+            <span class="process-item__desc">수작업 인센스 완성</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 5: CONTACT -->
+  <section class="section section--forest" id="contact" aria-label="문의">
+    <div class="closing__bg-img">
+      <img src="images/브랜드사진/farm.jpeg" alt="" aria-hidden="true" loading="lazy"
+           onerror="this.style.display='none'" />
+    </div>
+    <div class="container closing__content reveal">
+      <span class="eyebrow eyebrow--gold">Fresh Leaf, Refined Scent</span>
+      <h2 class="display-lg display-lg--light">
+        신선한 잎에서 시작해<br />공간에 머무는 향으로 <br />이어집니다
+      </h2>
+      <p class="body-lg body-lg--muted">
+        우리는 바질을 키우고, 그 향의 가능성까지 만듭니다.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">FRESHGRAM</p>
+      <p class="footer__copy">
+        © 2026 FRESHGRAM. All rights reserved. BASIL_CO. — 깊은 향을 키운 바질</span>
+      </p>
+      <nav class="footer__links" aria-label="푸터 메뉴">
+        <a href="#main">Main</a>
+        <a href="#brand">Brand</a>
+        <a href="#product">Product</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/cursor.js"></script> 
+  <script src="js/smoke.js"></script>
+  <script src="js/hero_morph.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

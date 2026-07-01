@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERDANT AROMATICS — Product</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/product_brand_style.css" />
+</head>
+<body class="product-page">
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#main" class="nav__logo">
+  <img
+    src="images/logo.png" alt="로고"
+    class="nav__logo-icon"
+  />
+</a>
+      <nav class="nav__menu" role="navigation" aria-label="주 메뉴">
+        <a href="index.html"   class="nav__link" data-section="brand">Main</a>
+        <a href="brand.html" class="nav__link" data-section="product">Brand</a>
+        <a href="product.html" class="nav__link nav__link--active" data-section="main">Product</a>
+        <a href="#contact"     class="nav__link" data-section="contact">Contact</a>
+      </nav>
+      <button class="nav__cart" aria-label="장바구니">
+        
+      </button>
+      <button class="nav__hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__drawer" id="drawer">
+      <a href="index.html"        class="nav__drawer-link">Main</a>
+      <a href="brand.html"   class="nav__drawer-link">Brand</a>
+      <a href="product.html" class="nav__drawer-link">Product</a>
+      <a href="#contact"     class="nav__drawer-link">Contact</a>
+    </div>
+  </header>
+
+
+  <!-- ================================================
+       HERO  —  좌: 바질 / 우: 인센스 분할 배경
+       이미지 없으면 포레스트 그린 그라디언트 폴백
+  ================================================ -->
+  <section class="ph" aria-label="Product Hero">
+    <div class="ph__bg">
+      <div class="ph__bg-left">
+        <!-- 📁 images/product-basil.jpg -->
+        <img src="images/브랜드사진/farm.jpeg" alt="" onerror="this.style.display='none'" />
+      </div>
+      <div class="ph__bg-right">
+        <!-- 📁 images/product-incense.jpg -->
+        <img src="images/브랜드사진/product-basil.png" alt="" onerror="this.style.display='none'" />
+      </div>
+      <div class="ph__bg-blend"></div>
+      <div class="ph__overlay"></div>
+    </div>
+    <div class="ph__content reveal">
+      <p class="ph__label">BASIL &amp; CO. — PRODUCTS</p>
+      <h1 class="ph__headline">Our Products</h1>
+      <p class="ph__sub">
+        바질의 신선함에서 시작해<br />향의 경험으로 확장된 제품을 소개합니다
+      </p>
+      <p class="ph__desc">
+        우리가 정성껏 키운 바질 생잎과 그 가치를 또 다른 방식으로 풀어낸 인센스까지.<br />
+        브랜드의 기준이 담긴 두 가지 제품을 만나보세요.
+      </p>
+    </div>
+    <div class="ph__hint">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       STICKY TAB  —  바질 생잎 | 인센스
+       JS addEventListener로만 제어 (onclick 없음)
+  ================================================ -->
+  <div class="ptab" id="productTab" role="tablist" aria-label="제품 탭">
+    <div class="ptab__inner">
+      <button class="ptab__btn ptab__btn--active" id="tabBasil"
+              role="tab" aria-selected="true" aria-controls="panelBasil">
+        <span class="ptab__btn-kr">바질 생잎</span>
+        <span class="ptab__btn-en">Fresh Basil Leaf</span>
+      </button>
+      <div class="ptab__divider"></div>
+      <button class="ptab__btn" id="tabIncense"
+              role="tab" aria-selected="false" aria-controls="panelIncense">
+        <span class="ptab__btn-kr">인센스</span>
+        <span class="ptab__btn-en">Basil Incense</span>
+      </button>
+      <div class="ptab__indicator" id="tabIndicator"></div>
+    </div>
+    <p class="ptab__tagline" id="tabTagline">
+      깊은 향과 두꺼운 잎이 만드는 분명한 차이
+    </p>
+  </div>
+
+
+  <!-- ================================================
+       TAB 1: 바질 생잎
+       S1 인트로 → S2 차별점 → S3 제품 갤러리
+       → S4 상세정보 → S5 How to Enjoy → S6 CTA
+  ================================================ -->
+  <div class="ppanel" id="panelBasil" role="tabpanel" aria-labelledby="tabBasil">
+
+    <!-- S1. 인트로 -->
+    <section class="pb-intro">
+      <div class="pb-intro__inner">
+
+        <!-- 좌: 대형 분위기 이미지 -->
+        <div class="pb-intro__img reveal">
+          <!-- 📁 images/basil-closeup.jpg  (바질 매크로컷) -->
+          <img src="images/basil_leaf.png" alt="바질 생잎 클로즈업"
+               loading="lazy" onerror="this.style.display='none'" />
+          <div class="pb-intro__img-corner"></div>
+        </div>
+
+        <!-- 우: 텍스트 -->
+        <div class="pb-intro__text reveal reveal--right">
+          <span class="eyebrow">Tab 01 — Fresh Basil Leaf</span>
+          <h2 class="pb-intro__title">프리미엄<br />바질 생잎</h2>
+          <p class="pb-intro__sub">
+            실내 스마트팜과 황토볼 기반 수경 재배로 키운<br />
+            깊은 향과 두꺼운 잎의 바질
+          </p>
+          <p class="pb-intro__desc">
+            우리가 재배하는 바질 생잎은 안정적인 실내 스마트팜 환경에서 자라며, <br />
+            황토볼 수경 재배 방식으로 세심하게 관리됩니다.<br />
+            그 결과, 향은 더욱 깊고 잎은 더욱 탄탄한 바질이 완성됩니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S2. 핵심 차별점 4블록 -->
+    <section class="pb-diff">
+      <div class="pb-diff__header reveal">
+        <span class="eyebrow eyebrow--light">Core Differences</span>
+        <h2 class="pb-diff__headline">왜 다른가</h2>
+      </div>
+      <div class="pb-diff__grid">
+
+        <div class="pb-diff__card reveal" style="--delay:0ms">
+          <div class="pb-diff__card-img">
+            <!-- 📁 images/diff-scent.jpg -->
+            <img src="images/product-basil.png" alt="깊은 향"
+                 loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="pb-diff__card-body">
+            <span class="pb-diff__card-num">01</span>
+            <h3 class="pb-diff__card-title">깊은 향</h3>
+            <p class="pb-diff__card-desc">가까이 갈수록 더 분명하게 느껴지는<br />선명한 바질의 아로마</p>
+          </div>
+        </div>
+
+        <div class="pb-diff__card reveal" style="--delay:100ms">
+          <div class="pb-diff__card-img">
+            <!-- 📁 images/diff-leaf.jpg -->
+            <img src="images/basil_leaf2.png" alt="두꺼운 잎"
+                 loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="pb-diff__card-body">
+            <span class="pb-diff__card-num">02</span>
+            <h3 class="pb-diff__card-title">두꺼운 잎</h3>
+            <p class="pb-diff__card-desc">눈으로도, 손끝으로도 느껴지는<br />탄탄한 잎의 밀도</p>
+          </div>
+        </div>
+
+        <div class="pb-diff__card reveal" style="--delay:200ms">
+          <div class="pb-diff__card-img">
+            <!-- 📁 images/diff-hydro.jpg -->
+            <img src="images/브랜드사진/farm.jpeg" alt="황토볼 수경재배"
+                 loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="pb-diff__card-body">
+            <span class="pb-diff__card-num">03</span>
+            <h3 class="pb-diff__card-title">황토볼 수경 재배</h3>
+            <p class="pb-diff__card-desc">정교하게 설계된 재배 환경이 만드는<br />균형 잡힌 생육과 품질</p>
+          </div>
+        </div>
+
+        <div class="pb-diff__card reveal" style="--delay:300ms">
+          <div class="pb-diff__card-img">
+            <!-- 📁 images/diff-calcium.jpg -->
+            <img src="images/basil.png" alt="풍부한 칼슘"
+                 loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="pb-diff__card-body">
+            <span class="pb-diff__card-num">04</span>
+            <h3 class="pb-diff__card-title">풍부한 칼슘</h3>
+            <p class="pb-diff__card-desc">건강한 생육을 고려한 관리로<br />더 안정적인 품질을 지향합니다</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- S3. 제품 이미지 갤러리
+         실제 바질 생잎 제품 사진을 자유롭게 교체하세요.
+         메인 1장 + 서브 3장 구성 (1+3 그리드)
+    -->
+    <section class="pgallery pgallery--basil">
+      <div class="pgallery__inner">
+
+        <div class="pgallery__header reveal">
+          <span class="eyebrow">Product Gallery</span>
+          <h2 class="pgallery__title">바질 생잎<br />제품 이미지</h2>
+          <p class="pgallery__desc">실제 재배·출하되는 바질 생잎의 모습입니다.</p>
+        </div>
+
+        <div class="pgallery__grid">
+
+          <!-- 메인 이미지 (크게) -->
+          <div class="pgallery__main reveal">
+            <!-- 📁 images/basil-product-main.jpg
+                 ✏️ 제품 메인컷으로 교체 (권장: 4:3 비율, 1200px 이상) -->
+            <img src="images/farm.png"
+                 alt="바질 생잎 제품 메인컷"
+                 loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="pgallery__main-label">
+              <span>Premium Basil Leaf</span>
+            </div>
+          </div>
+
+          <!-- 서브 이미지 3장 -->
+          <div class="pgallery__subs">
+
+            <div class="pgallery__sub reveal" style="--delay:80ms">
+              <!-- 📁 images/basil-product-01.jpg  예) 잎 클로즈업 -->
+              <img src="images/브랜드사진/basil3.png"
+                   alt="바질 생잎 디테일 1"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+              <p class="pgallery__sub-caption">basil</p>
+            </div>
+
+            <div class="pgallery__sub reveal" style="--delay:160ms">
+              <!-- 📁 images/basil-product-02.jpg  예) 패키지 컷 -->
+              <img src="images/브랜드사진/basil2.png"
+                   alt="바질 생잎 패키지"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+              <p class="pgallery__sub-caption">basil</p>
+            </div>
+
+            <div class="pgallery__sub reveal" style="--delay:240ms">
+              <!-- 📁 images/basil-product-03.jpg  예) 수확 장면 -->
+              <img src="images/브랜드사진/basil1.png"
+                   alt="바질 생잎 수확"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+              <p class="pgallery__sub-caption">basil</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S4. 제품 상세 정보 -->
+    <section class="pb-detail">
+      <div class="pb-detail__inner">
+
+        <!-- 좌: 정보 이미지 -->
+        <div class="pb-detail__img reveal">
+          <!-- 📁 images/basil-detail.jpg -->
+          <img src="images/브랜드사진/package.png" alt="바질 디테일"
+               loading="lazy" onerror="this.style.display='none'" />
+        </div>
+
+        <!-- 우: 정보 DL -->
+        <div class="pb-detail__info reveal reveal--right">
+          <span class="eyebrow">Product Details</span>
+          <h2 class="pb-detail__title">상세 정보</h2>
+          <dl class="pb-detail__dl">
+            <div class="pb-detail__row">
+              <dt>재배 방식</dt>
+              <dd>실내 스마트팜 / 황토볼 기반 수경 재배</dd>
+            </div>
+            <div class="pb-detail__row">
+              <dt>주요 특징</dt>
+              <dd>깊은 향, 두꺼운 잎, 신선한 상태감</dd>
+            </div>
+            <div class="pb-detail__row">
+              <dt>추천 사용</dt>
+              <dd>샐러드, 파스타, 가니시, 플레이팅, 허브 오일</dd>
+            </div>
+            <div class="pb-detail__row">
+              <dt>문의 방식</dt>
+              <dd>구매 / 납품 / 협업 문의 가능</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S5. How to Enjoy -->
+    <section class="pb-enjoy">
+      <div class="pb-enjoy__bg">
+        <!-- 📁 images/basil-plating.jpg -->
+        <img src="images/basil-plating.png" alt=""
+             loading="lazy" onerror="this.style.display='none'" />
+        <div class="pb-enjoy__overlay"></div>
+      </div>
+      <div class="pb-enjoy__content reveal">
+        <span class="eyebrow eyebrow--gold">How to Enjoy</span>
+        <h2 class="pb-enjoy__headline">접시 위의 분위기와<br />향의 인상까지 완성합니다</h2>
+        <p class="pb-enjoy__desc">
+          바질 생잎은 요리의 한 부분을 넘어 접시 위의 분위기와 향의 인상까지 완성합니다.
+          샐러드, 파스타, 샌드위치, 브런치 메뉴 등 신선함과 존재감이 필요한 순간에 더욱 잘 어울립니다.
+        </p>
+      </div>
+    </section>
+
+  </div><!-- /panelBasil -->
+
+
+  <!-- ================================================
+       TAB 2: 인센스
+       S1 인트로 → S2 차별점 → S3 제품 갤러리
+       → S4 스토리 → S5 For Your Space → S6 CTA
+  ================================================ -->
+  <div class="ppanel ppanel--hidden" id="panelIncense" role="tabpanel" aria-labelledby="tabIncense">
+
+    <!-- S1. 인트로 (좌우 반전) -->
+    <section class="pi-intro pb-intro">
+      <div class="pb-intro__inner">
+
+        <!-- 좌: 텍스트 -->
+        <div class="pb-intro__text reveal">
+          <span class="eyebrow">Tab 02 — Basil Incense</span>
+          <h2 class="pb-intro__title">바질<br />인센스</h2>
+          <p class="pb-intro__sub">
+            직접 키운 바질을 직접 말리고 재조하여<br />
+            향의 경험으로 완성한 인센스
+          </p>
+          <p class="pb-intro__desc">
+            우리의 인센스는 좋은 생잎에서 시작됩니다.<br />
+            정성껏 키운 바질을 직접 건조하고 재조하여,
+            생잎의 가치를 공간 속에 머무는 향으로 확장했습니다.
+          </p>
+        </div>
+
+        <!-- 우: 이미지 -->
+        <div class="pb-intro__img reveal reveal--right">
+          <!-- 📁 images/incense-main.jpg -->
+          <img src="images/브랜드사진/incense.png" alt="바질 인센스"
+               loading="lazy" onerror="this.style.display='none'" />
+          <div class="pi-intro__img-corner"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S2. 차별점 4블록 (텍스트 전용) -->
+    <section class="pi-diff">
+      <div class="pi-diff__header reveal">
+        <span class="eyebrow eyebrow--light">What Makes It Different</span>
+        <h2 class="pb-diff__headline">인센스의<br />의미와 차별점</h2>
+      </div>
+      <div class="pi-diff__grid">
+
+        <div class="pi-diff__block reveal" style="--delay:0ms">
+          <span class="pi-diff__block-label">From Leaf to Scent</span>
+          <p class="pi-diff__block-text">생잎의 신선한 인상을<br />또 다른 방식의 경험으로 연결합니다</p>
+        </div>
+
+        <div class="pi-diff__block reveal" style="--delay:100ms">
+          <span class="pi-diff__block-label">Directly Crafted</span>
+          <p class="pi-diff__block-text">직접 키우고, 직접 말리고, 직접 재조해<br />FRESHGRAM 기준을 끝까지 이어갑니다</p>
+        </div>
+
+        <div class="pi-diff__block reveal" style="--delay:200ms">
+          <span class="pi-diff__block-label">Basil-Inspired Aroma</span>
+          <p class="pi-diff__block-text">바질이 가진 푸르른 인상과 깊이 있는 향을<br />공간감 있는 무드로 풀어냅니다</p>
+        </div>
+
+        <div class="pi-diff__block reveal" style="--delay:300ms">
+          <span class="pi-diff__block-label">Expanded Experience</span>
+          <p class="pi-diff__block-text">식재료를 넘어<br />감각적인 라이프스타일 제품으로 확장됩니다</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S3. 제품 이미지 갤러리 — 인센스
+         실제 인센스 제품 사진을 자유롭게 교체하세요.
+         메인 1장(세로형) + 서브 3장 구성
+    -->
+    <section class="pgallery pgallery--incense">
+      <div class="pgallery__inner">
+
+        <div class="pgallery__header reveal">
+          <span class="eyebrow">Product Gallery</span>
+          <h2 class="pgallery__title">인센스<br />제품 이미지</h2>
+          <p class="pgallery__desc">바질을 직접 말리고 재조한 인센스 제품입니다.</p>
+        </div>
+
+        <div class="pgallery__grid pgallery__grid--incense">
+
+          <!-- 서브 이미지 3장 (인센스는 세로형이 많으므로 좌측 배치) -->
+          <div class="pgallery__subs pgallery__subs--left">
+
+            <div class="pgallery__sub reveal" style="--delay:0ms">
+              <!-- 📁 images/incense-product-01.jpg  예) 스틱 클로즈업 -->
+              <img src="images/브랜드사진/incense1.png"
+                   alt="인센스 스틱 클로즈업"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+              <p class="pgallery__sub-caption">Basil Incense</p>
+            </div>
+
+            <div class="pgallery__sub reveal" style="--delay:100ms">
+              <!-- 📁 images/incense-product-02.jpg  예) 패키지 컷 -->
+              <img src="images/브랜드사진/incense2.png"
+                   alt="인센스 패키지"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+              <p class="pgallery__sub-caption">Basil Incense</p>
+            </div>
+
+            <div class="pgallery__sub reveal" style="--delay:200ms">
+              <!-- 📁 images/incense-product-03.jpg  예) 연기 컷 -->
+              <img src="images/브랜드사진/incense3.png"
+                   alt="인센스 연기"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+              <p class="pgallery__sub-caption">Basil Incense</p>
+            </div>
+
+          </div>
+
+          <!-- 메인 이미지 (우측, 세로형) -->
+          <div class="pgallery__main pgallery__main--tall reveal" style="--delay:80ms">
+            <!-- 📁 images/incense-product-main.jpg
+                 ✏️ 인센스 제품 메인컷으로 교체 (권장: 세로 3:4 비율) -->
+            <img src="images/브랜드사진/incense.png"
+                 alt="인센스 제품 메인컷"
+                 loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="pgallery__main-label pgallery__main-label--dark">
+              <span>Basil Incense</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S4. 제품 스토리 -->
+    <section class="pi-story">
+      <div class="pi-story__inner">
+
+        <!-- 좌: 타임라인 -->
+        <div class="pi-story__left reveal">
+          <span class="eyebrow">The Story Behind</span>
+          <h2 class="pi-story__title">The Story<br />Behind the<br />Incense</h2>
+          <div class="pi-story__timeline">
+            <div class="pi-story__step">
+              <span class="pi-story__step-dot"></span>
+              <div>
+                <span class="pi-story__step-label">Grow</span>
+                <p class="pi-story__step-text">스마트팜에서 정성껏 재배합니다.</p>
+              </div>
+            </div>
+            <div class="pi-story__line"></div>
+            <div class="pi-story__step">
+              <span class="pi-story__step-dot"></span>
+              <div>
+                <span class="pi-story__step-label">Dry</span>
+                <p class="pi-story__step-text">직접 말려 향을 세심한 관리로 농축합니다</p>
+              </div>
+            </div>
+            <div class="pi-story__line"></div>
+            <div class="pi-story__step">
+              <span class="pi-story__step-dot"></span>
+              <div>
+                <span class="pi-story__step-label">Craft</span>
+                <p class="pi-story__step-text">직접 재조해 인센스 완성합니다</p>
+              </div>
+            </div>
+            <div class="pi-story__line"></div>
+            <div class="pi-story__step">
+              <span class="pi-story__step-dot pi-story__step-dot--gold"></span>
+              <div>
+                <span class="pi-story__step-label">Experience</span>
+                <p class="pi-story__step-text">공간에 머무는 향의 경험을 제공합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우: 스토리 텍스트 -->
+        <div class="pi-story__right reveal reveal--right">
+          <p class="pi-story__body">
+            이 인센스는 단순한 파생상품이 아닙니다.
+            우리가 바질을 재배하며 중요하게 여긴 향과 감각을
+            다른 형태로 풀어낸 또 하나의 결과물입니다.
+          </p>
+          <p class="pi-story__body">
+            생잎이 신선함으로 기억된다면,
+            인센스는 그 향을 더 오래 머무르게 합니다.
+            하나의 재배 철학이 두 가지 방식의 경험으로 이어집니다.
+          </p>
+          <blockquote class="pi-story__quote">
+            "신선한 잎에서 시작된 감각이<br />
+            공간 속에 머무는 향으로 이어집니다"
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S5. For Your Space -->
+    <section class="pi-space pb-enjoy">
+      <div class="pb-enjoy__bg">
+        <!-- 📁 images/incense-space.jpg -->
+        <img src="images/브랜드사진/incense-space.png" alt=""
+             loading="lazy" onerror="this.style.display='none'" />
+        <div class="pb-enjoy__overlay"></div>
+      </div>
+      <div class="pb-enjoy__content reveal">
+        <span class="eyebrow eyebrow--gold">For Your Space</span>
+        <h2 class="pb-enjoy__headline">향이 분위기를<br />만드는 공간에</h2>
+        <p class="pb-enjoy__desc">
+          집, 작업실, 스튜디오, 쇼룸 등 향이 분위기를 만드는 공간에 자연스럽게 어울립니다.
+          바질 인센스는 공간에 은은한 여운을 더하며,
+          브랜드가 전하고자 하는 감각을 일상 속으로 확장합니다.
+        </p>
+      </div>
+    </section>
+
+  </div><!-- /panelIncense -->
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">FRESHGRAM</p>
+      <p class="footer__copy">
+        © 2026 FRESHGRAM. All rights reserved. BASIL_CO. — 깊은 향을 키운 바질</span>
+      </p>
+      <nav class="footer__links" aria-label="푸터 메뉴">
+        <a href="#main">Main</a>
+        <a href="#brand">Brand</a>
+        <a href="#product">Product</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/cursor.js"></script> 
+  <script src="js/smoke.js"></script>
+  <script src="js/product_script.js"></script>
+</body>
+</html>

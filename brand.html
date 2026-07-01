@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERDANT AROMATICS — Brand</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/brand_style.css" />
+</head>
+<body class="brand-page">
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#main" class="nav__logo">
+  <img
+    src="images/logo.png" alt="로고"
+    class="nav__logo-icon"
+  />
+</a>
+      <nav class="nav__menu" role="navigation" aria-label="주 메뉴">
+        <a href="index.html"   class="nav__link" data-section="brand">Main</a>
+        <a href="brand.html"   class="nav__link nav__link--active" data-section="main">Brand</a>
+        <a href="product.html" class="nav__link" data-section="product">Product</a>
+        <a href="#contact"     class="nav__link" data-section="contact">Contact</a>
+      </nav>
+      <button class="nav__cart" aria-label="장바구니">
+        
+      </button>
+      <button class="nav__hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__drawer" id="drawer">
+      <a href="index.html"        class="nav__drawer-link">Main</a>
+      <a href="brand.html"   class="nav__drawer-link">Brand</a>
+      <a href="product.html" class="nav__drawer-link">Product</a>
+      <a href="#contact"     class="nav__drawer-link">Contact</a>
+    </div>
+  </header>
+
+
+  <!-- =============================================
+       HERO — 세로 타이포 중심 레이아웃
+       배경: 크림(이미지 없을 때) + 텍스트 전면
+  ============================================= -->
+  <section class="bh" aria-label="브랜드 히어로">
+
+    <!-- 📁 images/brand-hero.jpg (선택: 없으면 크림 배경) -->
+    <div class="bh__bg">
+      <img src="images/basil.png" alt="" aria-hidden="true"
+           onerror="this.style.display='none'" />
+      <div class="bh__overlay"></div>
+    </div>
+
+    <!-- 왼쪽 세로 레이블 -->
+    <div class="bh__side-label">
+      <span>BRAND STORY</span>
+    </div>
+
+    <!-- 중앙 타이포 블록 -->
+    <div class="bh__center reveal">
+      <p class="bh__num">001</p>
+      <h1 class="bh__headline">
+        좋은 바질은,<br />
+        좋은 환경에서부터<br />
+        시작됩니다
+      </h1>
+    </div>
+
+    <!-- 오른쪽 서브카피 -->
+    <div class="bh__sub reveal reveal--right">
+      <p>
+        우리는 바질을 단순히 재배하지 않습니다.<br />
+        향과 잎의 밀도, 그리고 식물의 본질적인<br />
+        컨디션까지 생각하며 더 정교한 방식으로<br />
+        바질을 키워냅니다.
+      </p>
+      <div class="bh__sub-line"></div>
+    </div>
+
+    <!-- 하단 스크롤 바 -->
+    <div class="bh__progress">
+      <div class="bh__progress-fill" id="bhProgress"></div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       PARTICLE LEAF — 스크롤 드리븐 파티클 잎
+       구조:
+         #leafScene (height: 400vh)  ← 스크롤 공간
+           └─ #leafSticky (sticky)   ← 화면에 고정
+                └─ canvas#leafCanvas ← Three.js 렌더링
+                └─ .leaf-text        ← 오버레이 텍스트 3단계
+
+       동작:
+         0~33%  → 파티클이 흩어진 상태에서 잎 형태로 모임
+         33~66% → 잎이 Y축 360° 회전
+         66~100%→ 잎이 다시 흩어지며 다음 섹션으로 전환
+  ============================================= -->
+  <section id="leafScene">
+    <div id="leafSticky">
+      <canvas id="leafCanvas"></canvas>
+
+      <!-- 단계별 오버레이 텍스트 -->
+      <div class="leaf-text" id="leafText0">
+        <p class="leaf-text__label">Grown with intention, felt with every sense</p>
+        <h2 class="leaf-text__headline">한 장의 잎에도<br />무게가 있습니다</h2>
+      </div>
+      <div class="leaf-text leaf-text--right" id="leafText1">
+        <p class="leaf-text__label">The leaf remembers how it was raised</p>
+        <h2 class="leaf-text__headline">정성의 결실은<br />향으로 증명됩니다</h2>
+      </div>
+      <div class="leaf-text leaf-text--center" id="leafText2">
+        <p class="leaf-text__label">This is what basil was always meant to be</p>
+        <h2 class="leaf-text__headline">바질의 본질에 집중합니다</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 1 — 브랜드 철학
+  ============================================= -->
+  <section class="bp" id="philosophy">
+
+    <!-- 배경 번호 워터마크 -->
+    <span class="bp__watermark">GRAM</span>
+
+    <div class="container">
+
+      <!-- 상단: 라벨 + 가는 선 -->
+      <div class="bp__header reveal">
+        <span class="bp__label">Brand Philosophy</span>
+        <div class="bp__rule"></div>
+      </div>
+
+      <!-- 대형 인용 타이포 (editorial) -->
+      <div class="bp__quote reveal">
+        <h2 class="bp__quote-text">
+          한 장의 잎 안에<br />
+          <em>FRESHGRAM</em>의 기준이<br />
+          담겨 있습니다
+        </h2>
+      </div>
+
+      <!-- 하단: 3열 본문 단락 -->
+      <div class="bp__body">
+
+        <div class="bp__col reveal" style="--delay:0ms">
+          <p>
+            우리는 바질을 단순한 식재료로 보지 않습니다.<br />
+            실내 스마트팜의 안정된 환경 안에서<br />
+            향과 잎의 상태를 세심하게 설계하고,<br />
+            그 결과가 한 장의 잎에 고스란히 담기도록<br />
+            재배의 모든 과정을 직접 관리합니다.
+          </p>
+        </div>
+
+        <div class="bp__col reveal" style="--delay:120ms">
+          <p>
+            좋은 바질은 보기 전에 향으로 먼저 알 수 있어야 합니다.<br />
+            황토볼 기반 수경 재배로 균형 있게 자란 우리의 바질은<br />
+            가까이 갈수록 선명해지는 형기와<br />
+            손끝으로 느껴지는 탄탄한 잎의 두께로<br />
+            그 차이를 직접 말해줍니다.
+          </p>
+        </div>
+
+        <div class="bp__col reveal" style="--delay:240ms">
+          <p class="bp__col--accent">
+            빠르게 키우는 방식 대신 더 좋은 상태로<br />
+            자랄 수 있는 환경을 선택했습니다.<br />
+            바질의 품격은 재배를 대하는 태도에서<br />
+            이미 결정된다고 믿기 때문입니다.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       SECTION 2 — 재배 방식
+       풀 다크 배경 + 가로 스티커 방식 텍스트 슬라이드
+       좌: 고정 헤드카피 / 우: 스크롤 리스트
+  ============================================= -->
+  <section class="bm" id="method">
+    <div class="container bm__inner">
+
+      <!-- 좌: sticky 헤드카피 -->
+      <div class="bm__left">
+        <span class="eyebrow eyebrow--light">Growing Method</span>
+        <h2 class="bm__title reveal">
+          실내<br />스마트팜에서<br />더 정교하게
+        </h2>
+        <!-- 📁 images/method-farm.jpg -->
+        <div class="bm__img-wrap reveal">
+          <img src="images/farm.png" alt="스마트팜"
+               loading="lazy" onerror="this.style.display='none'" />
+        </div>
+      </div>
+
+      <!-- 우: 상세 내용 리스트 -->
+      <div class="bm__right">
+
+        <div class="bm__item reveal" style="--delay:0ms">
+          <span class="bm__item-num">—01</span>
+          <div class="bm__item-body">
+            <h3 class="bm__item-title">안정적인 생육 환경</h3>
+            <p class="bm__item-desc">
+              외부 환경의 급격한 변화에 흔들리지 않도록
+              생육에 필요한 조건을 안정적으로 관리하며,
+              보다 일정하고 건강한 상태의 바질을 키워냅니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="bm__item reveal" style="--delay:150ms">
+          <span class="bm__item-num">—02</span>
+          <div class="bm__item-body">
+            <h3 class="bm__item-title">황토볼 수경 재배</h3>
+            <p class="bm__item-desc">
+              황토볼을 활용한 수경 재배 방식을 적용해
+              식물이 자라는 기반 환경을 세심하게 설계합니다.
+              바질의 향과 잎의 상태를 균형 있게 유지하는 데 도움을 줍니다.
+            </p>
+          </div>
+        </div>
+        <div class="bm__item reveal" style="--delay:300ms">
+          <span class="bm__item-num">—03</span>
+          <div class="bm__item-body">
+            <h3 class="bm__item-title">일정한 품질 기준</h3>
+            <p class="bm__item-desc">
+              FRESHGRAM이 지향하는 품질 기준을 꾸준히 이어갈 수 있도록
+              재배 방식과 환경을 함께 설계합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 📁 images/method-hydro.jpg -->
+        <div class="bm__img-right reveal" style="--delay:200ms">
+          <img src="images/브랜드사진/farm.jpeg" alt="황토볼 수경"
+               loading="lazy" onerror="this.style.display='none'" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       SECTION 3 — 차별점
+       크림 배경 + 대형 번호 + 전체 너비 수평선 구분
+       인터랙티브: 호버 시 해당 항목만 확장
+  ============================================= -->
+  <section class="bd" id="difference">
+    <div class="container">
+
+      <div class="bd__header reveal">
+        <span class="eyebrow">What Makes Us Different</span>
+        <h2 class="bd__headline">FRESHGRAM의 바질이<br />다른 이유</h2>
+      </div>
+
+      <!-- 아코디언 스타일 차별점 리스트 -->
+      <ul class="bd__list">
+
+        <li class="bd__item" data-index="0">
+          <button class="bd__trigger" aria-expanded="true">
+            <span class="bd__trigger-num">01</span>
+            <span class="bd__trigger-title">깊은 향</span>
+            <span class="bd__trigger-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div class="bd__panel">
+            <div class="bd__panel-inner">
+              <p class="bd__panel-text">
+                가까이 갈수록 더 선명하게 느껴지는 향은
+                이 바질이 가진 본연의 매력을 분명하게 보여줍니다.<br />
+                깊은 향은 우리의 가장 큰 특징 중 하나입니다.
+              </p>
+              <!-- 📁 images/diff-scent.jpg -->
+              <div class="bd__panel-img">
+                <img src="images/브랜드사진/farm.jpeg" alt="깊은 향"
+                     loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="bd__item" data-index="1">
+          <button class="bd__trigger" aria-expanded="false">
+            <span class="bd__trigger-num">02</span>
+            <span class="bd__trigger-title">두꺼운 잎</span>
+            <span class="bd__trigger-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div class="bd__panel">
+            <div class="bd__panel-inner">
+              <p class="bd__panel-text">
+                눈으로 보이는 신선함을 넘어,
+                손끝으로 느껴지는 탄탄한 밀도는
+                우리가 추구하는 재배 품질의 결과입니다.
+              </p>
+              <div class="bd__panel-img">
+                <img src="images/브랜드사진/farm.jpeg" alt="두꺼운 잎"
+                     loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="bd__item" data-index="2">
+          <button class="bd__trigger" aria-expanded="false">
+            <span class="bd__trigger-num">03</span>
+            <span class="bd__trigger-title">풍부한 칼슘</span>
+            <span class="bd__trigger-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div class="bd__panel">
+            <div class="bd__panel-inner">
+              <p class="bd__panel-text">
+                풍부한 칼슘을 고려한 균형 있는 생육 관리로
+                바질이 더욱 건강하고 안정적으로 자랄 수 있도록 돕습니다.<br />
+                재배 환경과 방식, 품질 기준이 함께 만들어낸 결과입니다.
+              </p>
+              <div class="bd__panel-img">
+                <img src="images/브랜드사진/farm.jpeg" alt="풍부한 칼슘"
+                     loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- 마무리 문장 -->
+      <p class="bd__closing reveal">
+        한 번 보면 보이고, 한 번 맡으면 기억됩니다.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       SECTION 4 — 인센스 확장
+       포레스트 다크 풀 배경
+       좌: 대형 슬로건 / 우: 프로세스 스텝 수직
+  ============================================= -->
+  <section class="bi section--forest" id="incense">
+
+    <div class="bi__bg">
+      <img src="images/product-incense.png" alt="" aria-hidden="true"
+           loading="lazy" onerror="this.style.display='none'" />
+      <div class="bi__overlay"></div>
+    </div>
+
+    <div class="container bi__inner">
+
+      <!-- 좌: 슬로건 -->
+      <div class="bi__left reveal">
+        <span class="eyebrow eyebrow--gold">잎의가치를, 향의 경험으로 확장합니다</span>
+        <h2 class="bi__headline">
+          From Leaf to Incense
+        </h2>
+        <p class="bi__sub reveal" style="--delay:500ms">
+          잎에서 시작된 향은<br />
+          형태를 바꿔도 그 본질을 잃지 않습니다.<br />
+          우리는 그 연속성을 제품으로 만들었습니다.
+        </p>
+      </div>
+
+      <!-- 우: 수직 프로세스 스텝 -->
+      <div class="bi__right">
+
+        <div class="bi__step reveal" style="--delay:0ms">
+          <div class="bi__step-head">
+            <span class="bi__step-num">1</span>
+            <h3 class="bi__step-title">재배</h3>
+          </div>
+          <p class="bi__step-desc">
+            온도, 습도, 양액 하나하나를 직접 설계하며
+            실내 스마트팜에서 바질 본연의 향과
+            잎의 상태를 세심하게 끌어올렸습니다.
+          </p>
+        </div>
+
+        <div class="bi__connector"></div>
+
+        <div class="bi__step reveal" style="--delay:150ms">
+          <div class="bi__step-head">
+            <span class="bi__step-num">2</span>
+            <h3 class="bi__step-title">건조</h3>
+          </div>
+          <p class="bi__step-desc">
+            수확한 바질은 서두르지 않습니다.
+            자연 건조의 시간을 충분히 거치며
+            생잎이 품은 향의 인상을 천천히, 그리고 깊이 농축합니다.
+          </p>
+        </div>
+
+        <div class="bi__connector"></div>
+
+        <div class="bi__step reveal" style="--delay:300ms">
+          <div class="bi__step-head">
+            <span class="bi__step-num">3</span>
+            <h3 class="bi__step-title">제조</h3>
+          </div>
+          <p class="bi__step-desc">
+            믿을 수 있는 천연 원료만을 사용해
+           한 번에 소량씩, 직접 손으로 만들어냅니다.
+           FRESHGRAM의 기준은 완성된 제품 한 개에도 그대로 담겨 있습니다.
+          </p>
+        </div>
+
+        <div class="bi__connector"></div>
+
+        <div class="bi__step reveal" style="--delay:450ms">
+          <div class="bi__step-head">
+            <span class="bi__step-num">4</span>
+            <h3 class="bi__step-title">경험</h3>
+          </div>
+          <p class="bi__step-desc">
+            신선한 잎에서 시작된 향은
+            공간 속으로 스며들어 오래 머뭅니다.
+            바질이 가진 감각을 일상의 장면으로 확장하는 경험을 제공합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       SECTION 5 — 브랜드 마무리
+       크림 배경 + 전면 타이포 + 하단 CTA
+  ============================================= -->
+  <section class="bc" id="closing">
+    <div class="container bc__inner">
+
+      <!-- 상단: 대형 마무리 카피 -->
+      <div class="bc__top reveal">
+        <h2 class="bc__headline">
+          우리는 바질을 키우고,<br />
+          그 향의 가능성까지<br />
+          만듭니다
+        </h2>
+        <p class="bc__sub">
+          한 장의 잎에서 시작된 차이는 브랜드 전체의 인상으로 이어집니다.<br />
+          우리가 만드는 것은 단순한 농산물이 아니라,<br />
+          더 좋은 방식으로 자란 식재료이자 더 오래 기억되는 향의 경험입니다.
+        </p>
+      </div>
+
+      <!-- 가운데: 4가지 키워드 수평 타임라인 -->
+      <div class="bc__timeline reveal">
+        <div class="bc__tl-item">
+          <span class="bc__tl-dot"></span>
+          <span class="bc__tl-label">Environment</span>
+          <span class="bc__tl-text">실내 스마트팜의<br />정교한 재배 환경</span>
+        </div>
+        <div class="bc__tl-line"></div>
+        <div class="bc__tl-item">
+          <span class="bc__tl-dot"></span>
+          <span class="bc__tl-label">Method</span>
+          <span class="bc__tl-text">황토볼 기반<br />수경 재배 방식</span>
+        </div>
+        <div class="bc__tl-line"></div>
+        <div class="bc__tl-item">
+          <span class="bc__tl-dot"></span>
+          <span class="bc__tl-label">Quality</span>
+          <span class="bc__tl-text">깊은 향과<br />두꺼운 잎</span>
+        </div>
+        <div class="bc__tl-line"></div>
+        <div class="bc__tl-item">
+          <span class="bc__tl-dot"></span>
+          <span class="bc__tl-label">Extension</span>
+          <span class="bc__tl-text">생잎에서<br />인센스로의 확장</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+ <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">FRESHGRAM</p>
+      <p class="footer__copy">
+        © 2026 FRESHGRAM. All rights reserved. BASIL_CO. — 깊은 향을 키운 바질</span>
+      </p>
+      <nav class="footer__links" aria-label="푸터 메뉴">
+        <a href="#main">Main</a>
+        <a href="#brand">Brand</a>
+        <a href="#product">Product</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  <!--
+    스크립트 로드 순서:
+    1. smoke.js        : 배경 연기 파티클 (전체 공통)
+    2. leaf-particle.js: Three.js 잎 파티클 (brand 전용)
+    3. brand.js        : 네비/아코디언/리빌 등 UI 제어
+  -->
+    <script src="js/cursor.js"></script> 
+  <script src=js/smoke.js"></script>
+  <script src="js/leaf-grid.js"></script>
+  <script src="js/brand_script.js"></script>
+</body>
+</html>
