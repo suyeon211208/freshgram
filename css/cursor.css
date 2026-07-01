@@ -1,0 +1,45 @@
+/* =============================================
+   VERDANT AROMATICS — cursor.css
+   커스텀 커서 전역 스타일
+============================================= */
+
+/* 기본 커서 전체 숨기기 */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* 입력 필드는 text 커서 허용 */
+input, textarea, [contenteditable] {
+  cursor: text !important;
+}
+
+/* ── 커서 요소 기본 스타일 ─────────────────
+   JS에서 동적으로 위치 제어하므로
+   여기서는 초기 숨김 상태만 설정           */
+#cursorDot,
+#cursorRing {
+  /* 페이지 로드 직후 화면 중앙 깜빡임 방지 */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* 마우스 진입 후 표시 (JS에서 제어) */
+body.cursor-ready #cursorDot,
+body.cursor-ready #cursorRing {
+  opacity: 1;
+}
+
+/* ── 모바일: 커스텀 커서 비활성화 ─────────
+   터치 기기는 커서 없으므로 DOM 요소 숨김  */
+@media (hover: none) and (pointer: coarse) {
+  #cursorDot,
+  #cursorRing {
+    display: none !important;
+  }
+  *, *::before, *::after {
+    cursor: auto !important;
+  }
+  input, textarea {
+    cursor: text !important;
+  }
+}
